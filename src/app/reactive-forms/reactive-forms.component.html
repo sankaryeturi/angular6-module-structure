@@ -1,0 +1,74 @@
+<h2>
+  Reactive Forms
+</h2>
+
+<form class="mb-5" [formGroup]="registerForm" (ngSubmit)="submitForm(formDir.value)" #formDir="ngForm" novalidate >
+  <div class="form-group">
+    <label for="fullName">Full Name:</label>
+    <input type="text"
+           class="form-control"
+           id="fullName"
+           placeholder="Enter name"
+           name="fullName"
+           formControlName="fullName" />
+    <div *ngIf="(registerForm.controls.fullName.invalid && registerForm.controls.fullName.touched) || (registerForm.hasError('required', 'fullName') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.fullName.errors.required">Please enter full name</span>
+    </div>
+    <div *ngIf="(registerForm.controls.fullName.invalid && registerForm.controls.fullName.touched) || (registerForm.hasError('minlength', 'fullName') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.fullName.errors.minlength">Min length 5</span>
+    </div>
+    <div *ngIf="(registerForm.controls.fullName.invalid && registerForm.controls.fullName.touched) || (registerForm.hasError('maxlength', 'fullName') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.fullName.errors.maxlength">Max length 15</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email"
+           class="form-control"
+           id="email"
+           placeholder="Enter email"
+           name="email"
+           formControlName="email" />
+    <div *ngIf="(registerForm.controls.email.invalid && registerForm.controls.email.touched) || (registerForm.hasError('required', 'email') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.email.errors.required">Please enter email</span>
+      <span class="text-danger" *ngIf="registerForm.controls.email.errors.email">Enter a Valid email</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number:</label>
+    <input type="text"
+           class="form-control"
+           id="phoneNumber"
+           placeholder="Enter phone number"
+           name="phoneNumber"
+           formControlName="phoneNumber" />
+    <div *ngIf="(registerForm.controls.phoneNumber.invalid && registerForm.controls.phoneNumber.touched) || (registerForm.hasError('required', 'phoneNumber') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.phoneNumber.errors.pattern">Enter a Valid number</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password"
+           class="form-control"
+           id="pwd"
+           placeholder="Enter password"
+           name="pwd"
+           formControlName="pwd" />
+    <div *ngIf="(registerForm.controls.pwd.invalid && registerForm.controls.pwd.touched) || (registerForm.hasError('pattern', 'pwd') && formDir.submitted)">
+      <span class="text-danger" *ngIf="registerForm.controls.pwd.errors.pattern">Password should contain 'a-z', 'A-Z', '0-9' and one special charactor</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="cpwd">Confirm Password:</label>
+    <input type="password" class="form-control" id="cpwd" placeholder="Enter confirm password" name="cpwd">
+  </div>
+  <div class="form-group">
+    <label for="attachment">Attachment:</label>
+    <input type="file" class="form-control" id="attachment" name="attachment">
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox" name="remember"> Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
